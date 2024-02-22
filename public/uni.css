@@ -1,0 +1,22 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+}
+header div {
+    padding: 10px 20px;
+}
+
+#dropdown {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    height: 30px;
+    transition: 0.5s;
+}
+#dropdown:hover {
+    height: 180px;
+}
