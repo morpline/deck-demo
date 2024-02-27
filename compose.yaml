@@ -11,12 +11,16 @@ services:
   server:
     build:
       context: .
+      args:
+        SOURCE: "./apps/simple-express"
+        GID: ${GID}
+        UID: ${UID}
     environment:
       NODE_ENV: production
     ports:
       - 3000:3000
     volumes:
-      - appdata:/home/node/appdata
+      - serveral:/vols/serveral
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
@@ -46,7 +50,7 @@ services:
 #       timeout: 5s
 #       retries: 5
 volumes:
-  appdata:
+  serveral:
     external: true
 # secrets:
 #   db-password:

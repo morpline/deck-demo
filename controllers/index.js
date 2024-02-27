@@ -2,7 +2,7 @@
 const fs = require("node:fs")
 const fsp= require("node:fs/promises");
 
-
+let volumepath = "/vols/serveral/";
 
 const cheesebag = async (req,res)=>{
     console.log("creete fill");
@@ -15,7 +15,7 @@ const cheesebag = async (req,res)=>{
     //     }
     // })
     console.log(req.query);
-    await fsp.writeFile("./node/appdata/"+req.query.name,"This is a new file. You can write notes here, and even write code, if necessary.").catch((e)=>{
+    await fsp.writeFile(volumepath+req.query.name,"This is a new file. You can write notes here, and even write code, if necessary.").catch((e)=>{
         console.log(e);
     }).then(()=>{
         res.send({msg:"File Written Successfully."})
@@ -33,7 +33,7 @@ const getFiles = async (req,res)=>{
     //     console.log(file);
 
     // }
-    await fsp.readdir("./node/appdata",{}).then((f)=>{
+    await fsp.readdir(volumepath,{}).then((f)=>{
         // console.log(f);
         filenames.push(f)
     })
@@ -50,7 +50,7 @@ const getFile = async (req,res)=>{
     //     console.log(file);
 
     // }
-    await fsp.readFile("./node/appdata/"+req.query.file).then((f)=>{
+    await fsp.readFile(volumepath+req.query.file).then((f)=>{
         // console.log(f);
         res.send({data:String(f)})
     })
@@ -66,7 +66,7 @@ const editFile = async (req,res)=>{
     //     console.log(file);
 
     // }
-    await fsp.writeFile("./node/appdata/"+req.query.file,req.query.data).then((f)=>{
+    await fsp.writeFile(volumepath+req.query.file,req.query.data).then((f)=>{
         // console.log(f);
         res.send({data:String(f)})
     })
@@ -74,7 +74,7 @@ const editFile = async (req,res)=>{
 
 const deleteFile = async (req,res)=> {
     res.setHeader("Access-Control-Allow-Origin","*");
-    await fsp.writeFile("./node/appdata/"+req.query.file,req.query.data).then((f)=>{
+    await fsp.writeFile(volumepath+req.query.file,req.query.data).then((f)=>{
         // console.log(f);
         res.send({data:String(f)})
     })
