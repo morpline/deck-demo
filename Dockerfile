@@ -25,7 +25,7 @@ RUN apk --no-cache add shadow
 RUN usermod -u 1000 node && groupmod -g 1000 node
 
 # FROM assets as assets
-# RUN mkdir -p /vols
+RUN mkdir -p /vols/serveral
 
 # RUN chown -R ${UID}:${GID} /home/node/app
 RUN chown -R 1000:1000 /vols
